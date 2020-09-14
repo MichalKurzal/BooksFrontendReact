@@ -13,10 +13,14 @@ function BookDetail({ match }) {
   const [book, setbook] = useState({});
 
   const getBooks = async () => {
-    const data = await fetch(`http://localhost:3000/books/${match.params.id}`);
-    const dataJSON = await data.json();
-    console.log(dataJSON);
-    setbook(dataJSON);
+    try {
+      const data = await fetch(`http://localhost:3000/books/${match.params.id}`);
+      const dataJSON = await data.json();
+      console.log(dataJSON);
+      setbook(dataJSON);
+    } catch {
+      console.log('Error! No connection to API');
+    }
   };
 
   return (

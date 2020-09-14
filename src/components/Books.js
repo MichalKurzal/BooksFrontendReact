@@ -12,12 +12,15 @@ function Books() {
   const [books, setbooks] = useState([]);
 
   const getBooks = async () => {
-    const data = await fetch('http://localhost:3000/books');
-    const dataJSON = await data.json();
-    console.log(dataJSON);
-    setbooks(dataJSON);
+    try {
+      const data = await fetch('http://localhost:3000/books');
+      const dataJSON = await data.json();
+      console.log(dataJSON);
+      setbooks(dataJSON);
+    } catch {
+      console.log('Error! No connection to API');
+    }
   };
-
   return (
     <div className="books">
       {books.map((book) => (
